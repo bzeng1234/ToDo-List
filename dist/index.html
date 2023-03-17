@@ -12,50 +12,40 @@
     <div class="main-container">
         <div class="sidebar">
             <ul class="task-list">
-                <li class="task">
-                    <div class="inbox-icon"></div>
-                    <p class="task-inbox">Inbox</p>
+                <li class="task" id="Inbox">
+                    <div class="inbox-icon"></div>Inbox
                 </li>
-                <li class="task">
-                    <div class="today-icon"></div>
-                    <p class="task-today">Today</p>
+                <li class="task" id="Today">
+                    <div class="today-icon"></div>Today
                 </li>
-                <li class="task">
-                    <div class="week-icon"></div>
-                    <p class="task-week">This Week</p>
+                <li class="task" id="Week">
+                    <div class="week-icon"></div>This Week
                 </li>
-                <li class="task">
-                    <div class="complete-icon"></div>
-                    <p class="task-complete">Completed</p>
+                <li class="task" id="Completed">
+                    <div class="complete-icon"></div>Completed
                 </li>
             </ul>
             <div class="project-container">
                 <div class="project-title">Project</div>
                 <form id="add-proj-form" action="#">
-                    <input type="text" id="proj-input" placeholder="New project" required/>
+                    <input type="text" id="proj-input" placeholder="New project" autocomplete="off" required/>
                     <div class="project-btn-container">
                         <button type="button" class="clear-btn">Clear</button>
-                        <button type="button" class="add-proj-btn">Add Project</button>
+                        <button type="submit" class="add-proj-btn">Add Project</button>
                     </div>
                 </form>
                 <ul class="project-list">
-                    <li class="project">
-                        <p class="task-inbox">Inbox</p>
-                    </li>
-                    <li class="project">
-                        <p class="task-inbox">Me</p>
-                    </li>
+                    <li class="project">Inbox</li>
+                    <li class="project">Me</li>
                 </ul>
             </div>
         </div>
         <div class="content">
             <div class="todo-header">
-                <div class="todo-title">Inbox</div>
+                <div class="todo-title"></div>
                 <button class="add-task-btn">Add Task</button>
             </div>
             <ul class="todo-list">
-                <li class="todo-items">Take out trash</li>
-                <li class="todo-items">Wash dishes</li>
             </ul>
         </div>
     </div>
