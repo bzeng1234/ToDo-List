@@ -105,7 +105,7 @@ footer {
     gap: 5px;
 }
 
-.clear-btn,
+.clear-proj-btn,
 .add-proj-btn,
 .add-task-btn {
     font-size: 15px;
@@ -168,6 +168,7 @@ footer {
 
 .todo-title {
     font-size: 40px;
+    width: 200px;
 }
 
 .add-task-btn {

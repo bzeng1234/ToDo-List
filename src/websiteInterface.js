@@ -1,3 +1,6 @@
+import { toDo } from './todo';
+import { project } from './project';
+
 export let websiteInterface = () => {
 
     let projectList = [];
@@ -76,7 +79,14 @@ export let websiteInterface = () => {
 
         let projListElem = document.querySelector('.project-list');
         projListElem.appendChild(newProjElem);
-    }
+
+        projectList.push(project(newProjName.value));
+    };
+
+    let clearInput = () => {
+        let projInputElem = document.getElementById('proj-input');
+        projInputElem.value = "";
+    };
     
     let initProjectForm = () => {
         let addProjBtn = document.querySelector('.add-proj-btn');
@@ -84,6 +94,27 @@ export let websiteInterface = () => {
             e.preventDefault();
 
             createNewProj();
+            clearInput();
+            initProjList();
+        });
+
+        let clearProjBtn = document.querySelector('.clear-proj-btn');
+        clearProjBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            clearInput();
+        });
+    };
+
+    let initProjList = () => {
+        let projListElem = document.querySelectorAll('.project');
+
+
+        projListElem.forEach(element => {
+            element.addEventListener('click', (e) => {
+                let proj = projectList.find(elem => elem.name === e.target.textContent);
+                updateContent(proj);
+            });
         });
     };
 
@@ -97,13 +128,17 @@ export let websiteInterface = () => {
 
         // initalize project form for adding new projects
         initProjectForm();
+        initProjList();
     };
 
     let initWebsite = () => {
+        let defaultProj = project('Inbox');
+        defaultProj.addToList(toDo('get milk','go to the grocery store','03/15/2022','high'));
+        projectList.push(defaultProj);
         initSidebar();
     };
 
     
-
+    
     return {projectList, updateProjects, initWebsite, initSidebar};
 };
