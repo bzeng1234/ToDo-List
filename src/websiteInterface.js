@@ -18,7 +18,7 @@ export let websiteInterface = () => {
     let addToContentScreen = (todoItem) => {
         let newItem = document.createElement('li');
         newItem.classList.add('todo-items');
-        newItem.textContent = `${todoItem.name} : ${todoItem.description}`;
+        newItem.textContent = `${todoItem.name} : ${todoItem.description} : ${todoItem.dueDate} : ${todoItem.priority}`;
         
         let todoListElem = document.querySelector('.todo-list');
         todoListElem.appendChild(newItem);
@@ -106,6 +106,16 @@ export let websiteInterface = () => {
         });
     };
 
+    let clearForm = () => {
+        let taskNameElem = document.getElementById('task-name');
+        let taskDateElem = document.getElementById('task-date');
+        let taskDescriptionElem = document.getElementById('task-description');
+
+        taskNameElem.value = "";
+        taskDateElem.value = "";
+        taskDescriptionElem.value = "";
+    }
+
     let initProjList = () => {
         let projListElem = document.querySelectorAll('.project');
 
@@ -115,6 +125,36 @@ export let websiteInterface = () => {
                 let proj = projectList.find(elem => elem.name === e.target.textContent);
                 updateContent(proj);
             });
+        });
+    };
+
+    let initAddTaskButton = () => {
+        let addTaskBtnElem = document.querySelector('.add-task-btn');
+        addTaskBtnElem.addEventListener('click', (e) => {
+            let taskForm = document.querySelector('.add-task-form');
+            if(taskForm.style.display == "grid") {
+                taskForm.style.display = "none";
+                clearForm();
+            } else {
+                taskForm.style.display = "grid";
+            }
+        });
+    };
+
+    let initTaskForm = () => {
+        let addItemElem = document.querySelector('.add-item');
+        addItemElem.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            let taskName = document.getElementById('task-name').value;
+            let taskDate = document.getElementById('task-date').value;
+            let taskDescription = document.getElementById('task-description').value;
+            let taskPriority = document.getElementById('task-priority').value;
+
+            let currProjName = document.querySelector(".todo-title").textContent;
+            let proj = projectList.find(elem => elem.name === currProjName);
+            proj.addToList(toDo(taskName, taskDescription, taskDate, taskPriority));
+            updateContent(proj);
         });
     };
 
@@ -129,6 +169,11 @@ export let websiteInterface = () => {
         // initalize project form for adding new projects
         initProjectForm();
         initProjList();
+
+        // initalize add task button
+        initAddTaskButton();
+        initTaskForm();
+        updateContent(projectList[0]);
     };
 
     let initWebsite = () => {
