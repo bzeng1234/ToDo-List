@@ -69,6 +69,24 @@ export let websiteInterface = () => {
         });
     };
 
+    let initProjectForm = () => {
+        let addProjBtn = document.querySelector('.add-proj-btn');
+        addProjBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            createNewProj();
+            clearInput();
+            initProjList();
+        });
+
+        let clearProjBtn = document.querySelector('.clear-proj-btn');
+        clearProjBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            clearInput();
+        });
+    };
+
     let createNewProj = () => {
         let newProjName = document.getElementById('proj-input');
         console.log(newProjName.value);
@@ -86,24 +104,6 @@ export let websiteInterface = () => {
     let clearInput = () => {
         let projInputElem = document.getElementById('proj-input');
         projInputElem.value = "";
-    };
-    
-    let initProjectForm = () => {
-        let addProjBtn = document.querySelector('.add-proj-btn');
-        addProjBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            createNewProj();
-            clearInput();
-            initProjList();
-        });
-
-        let clearProjBtn = document.querySelector('.clear-proj-btn');
-        clearProjBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            clearInput();
-        });
     };
 
     let clearForm = () => {
@@ -158,6 +158,13 @@ export let websiteInterface = () => {
         });
     };
 
+    let initContent = () => {
+        // initalize add task button
+        initAddTaskButton();
+        initTaskForm();
+        updateContent(projectList[0]);
+    }
+
     let initSidebar = () => {
 
         // initialize top side bar buttons
@@ -169,11 +176,6 @@ export let websiteInterface = () => {
         // initalize project form for adding new projects
         initProjectForm();
         initProjList();
-
-        // initalize add task button
-        initAddTaskButton();
-        initTaskForm();
-        updateContent(projectList[0]);
     };
 
     let initWebsite = () => {
@@ -181,6 +183,7 @@ export let websiteInterface = () => {
         defaultProj.addToList(toDo('get milk','go to the grocery store','03/15/2022','high'));
         projectList.push(defaultProj);
         initSidebar();
+        initContent();
     };
 
     
